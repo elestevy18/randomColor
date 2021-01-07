@@ -1,21 +1,42 @@
+//Import 
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
+ 
 
-export default function App() {
+//Create custom components
+const App = () => {
+
+  //Declare variable
+  //var counter = 0;
+  const [counter, setCounter] = useState(0);
+  //console.log("counter:" + counter);
+  //console.log("Set counter:" + setCounter);
+  var letters = '0123456789ABCDEF';
+  var randcolor = '#';
+  for (var i = 0; i < 6; i++) {
+    randcolor += letters[Math.floor(Math.random() * 16)];
+  }
+  const randomcolor = randcolor
+  console.log("color" + randcolor)
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <View 
+    style={{backgroundColor: randcolor,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    }}>
+      <Text>Color Hex: {randcolor}</Text>
+      <Button title="New Color"
+      onPress={()=>{
+        setCounter(counter + 1);
+      }}
+      />
       <StatusBar style="auto" />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+//Export 
+export default App;
